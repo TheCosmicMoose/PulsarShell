@@ -1,0 +1,85 @@
+archlabs: 
+arcolinux: 
+archlinux: 
+paper airplane:
+c icon: 
+cachyos: 
+dots horizontal: 󰟃
+dots vertical: 󰟄
+discord: 
+discord bubble: 󰙯
+vsCode: 
+blender: 
+git: 
+neovim: 
+eyedropper: 
+firefox: 
+fedora: 
+hyprland: 
+gamepad: 
+steam: 
+leaf circle: 󱤅
+robot excited: 󱚤
+robot love: 󱚦
+robot confused: 󱚠
+robot dead: 󱚢
+robot angry: 󱚞
+robot happy: 󱜚
+cog: 󰒓
+krita: 
+minecraft: 󰍳
+nixos: 
+rebels: 
+circle check: 
+orbit: 󰀘
+tunnel: 
+pacman: 󰮯
+rounded square: 󱓻
+rocket outline: 󱓟
+void linux: 
+
+search: 
+
+update: 
+
+divider: 
+
+stay awake: 
+
+do not disturb: 󰂛
+
+cpu: 
+ram: 
+
+wifi alert: 󰤫
+wifi lock: 󱛏
+wifi strength 0: 󰤯
+wifi strength 1: 󰤟
+wifi strength 2: 󰤢
+wifi strength 3: 󰤥
+wifi strength 4: 󰤨
+
+volume up: 
+volume down: 
+mute: 
+volume 0: 
+volume 1: 
+volume 2: 
+volume 3: 
+
+speaker: 󰓃
+headset: 󰋋
+audio sink other: 󱡭
+audio sink error: 󱆶
+
+bluetooth: 󰂰
+monitor: 󰍹
+
+chevron up: 
+chevron left: 
+chevron down: 
+chevron right: 
+
+pacman closed: 
+pacman open: 󰮯
+pacman dots: 󰇘
