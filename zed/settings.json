@@ -1,0 +1,30 @@
+{
+  "icon_theme": "Icons modern material (Dark)",
+  "markdown_preview": {
+    "font_family": "JetBrainsMono Nerd Font"
+  },
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "agent": {
+    "button": false,
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim_mode": true,
+  "buffer_font_family": "JetBrainsMono Nerd Font"
+}

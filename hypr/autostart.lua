@@ -1,0 +1,8 @@
+hl.on("hyprland.start", function ()
+	hl.exec_cmd("swaync")
+	hl.exec_cmd("nm-applet & udiskie & cliphist")
+	hl.exec_cmd("quickshell & hyprpaper")
+	hl.exec_cmd("hypridle")
+	hl.exec_cmd("systemctl --user enable --now hyprpolkitagent.service")
+	hl.exec_cmd("vicinae server")
+end)

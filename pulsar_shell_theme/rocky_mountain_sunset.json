@@ -1,0 +1,101 @@
+{
+  "name": "Rocky Mountain Sunset",
+  "colors": {
+    "bgPrimary": "#322828",
+    "bgSecondary": "#383228",
+    "bgModule": "#484236",
+
+    "textPrimary": "#fbf1d0",
+    "textSecondary": "#ede4c5",
+    "textContrast": "#59564a",
+
+    "accentRed": "#cc241d",
+    "highlightRed": "#fb4934",
+    "accentOrange": "#fe6e19",
+    "highlightOrange": "#fa8846",
+    "accentYellow": "#ffd30d",
+    "highlightYellow": "#ffdf4f",
+    "accentGreen": "#88981a",
+    "highlightGreen": "#aeba30",
+    "accentAqua": "#4f9d5c",
+    "highlightAqua": "#5fba64",
+    "accentBlue": "#40988e",
+    "highlightBlue": "#4cb0a2",
+    "accentPurple": "#b16286",
+    "highlightPurple": "#d3869b",
+    "accentGray": "#868288",
+    "highlightGray": "#a29692",
+
+    "windowBorderActiveStart": "#cc241d",
+    "windowBorderActiveEnd": "#fb4934",
+    "windowBorderInactiveStart": "#868288",
+    "windowBorderInactiveEnd": "#a29692",
+
+    "cursorBg": "#fb4934",
+    "selectionBg": "#cc241d",
+    "selectionFg": "#fbf1d0"
+  },
+  "transparency": {
+    "alphaBarBg": 0.85,
+    "alphaAccent": 0.95,
+    "alphaHighlight": 0.95,
+    "alphaActiveWindow": 1.0,
+    "alphaInactiveWindow": 0.85,
+    "alphaActiveWindowBorder": 1.0,
+    "alphaInactiveWindowBorder": 0.75,
+    "blurRadius": 6,
+    "blurPasses": 2,
+    "borderGradientAngle": 35,
+    "alphaTerminal": 0.85
+  },
+  "font": {
+    "fontFamily": "JetBrainsMono Nerd Font",
+    "fontFamilyAlt": "JetBrainsMono Nerd Font Propo",
+    "fontSizePrimary": 12,
+    "fontSizeLarge": 14,
+    "fontSizeSmall": 10
+  },
+  "quickshellMetrics": {
+    "barThickness": 48,
+    "barSpacing": 8,
+    "edgeMargin": 8,
+    "yPadding": 16,
+    "xPadding": 16,
+
+    "barButtonWidth": 40,
+    "barButtonHeight": 40,
+    "barButtonHalfHeight": 20,
+
+    "barRadius": 24,
+    "barButtonRadius": 20,
+
+    "animDuration": 100,
+    "animLong": 200,
+    "animShort": 50
+  },
+  "hyprlandMetrics": {
+    "windowBorderWidth": 2,
+    "windowCornerRadius": 0,
+    "gapsIn": 2,
+    "gapsOut": 2
+  },
+  "zenColors": {
+    "zenPrimaryColor": "#40988e",
+    "zenBrandingBg": "#322828",
+    "zenBrandingBgReverse": "#ede4c5",
+    "toolboxTextColor": "#ede4c5",
+    "toolbarBgTransparent": "#322828",
+    "surfaceSecondary": "#383228",
+    "BorderColor": "#ede4c5",
+    "tabLabelColor": "#ede4c5",
+    "personalToolbarColor1": "#ede4c5",
+    "personalToolbarColor2": "#322828",
+    "browserBg1": "#484236",
+    "browserBg2": "#322828",
+    "workspaceAccent1": "#d3869b",
+    "workspaceAccent2": "#fa8846",
+    "workspaceAccent3": "#aeba30",
+    "workspaceAccent4": "fb4934",
+    "workspaceAccent5": "#5fba64"
+  }
+}

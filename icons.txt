@@ -83,3 +83,18 @@ chevron right: 
 pacman closed: 
 pacman open: 󰮯
 pacman dots: 󰇘
+
+weather sunny: 
+weather moon: 
+weather rain: 
+weather rain wind: 
+weather thunderstorm: 
+weather sleet: 
+weather snow: 
+weather cloudy: 
+weather cloudy wind: 
+weather cloudy gusts: 
+weather fog: 
+weather haze: 
+sunset: 
+sunrise: 

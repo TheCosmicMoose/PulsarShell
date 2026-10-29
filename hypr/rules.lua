@@ -1,0 +1,51 @@
+-- Default Workspace Configuration for Pulsar Shell --
+
+-- Display Defaults
+local mainDisplay = "HDMI-A-1"
+local secondaryDisplay = "DP-3"
+
+-- Set workspaces 1-10 to bind to main display.
+for i = 1, 10 do
+    local ws = i
+    hl.workspace_rule({ workspace = tostring(i), monitor = mainDisplay })
+end
+-- Set worksapces 11-15 to bind to secondary display
+for i= 11, 20 do
+    local ws = i
+	hl.workspace_rule({ workspace = tostring(i), monitor = secondaryDisplay})
+end
+
+--Window Rules
+
+local suppressMaximizeRule = hl.window_rule({
+    -- Ignore maximize requests from all apps.
+    name  = "suppress-maximize-events",
+    match = { class = ".*" },
+
+    suppress_event = "maximize",
+})
+
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name  = "fix-xwayland-drags",
+    match = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
+    },
+
+    no_focus = true,
+})
+
+hl.window_rule({
+    name  = "move-hyprland-run",
+    match = { class = "hyprland-run" },
+
+    move  = "20 monitor_h-120",
+    float = true,
+})
+
+hl.config({ xwayland = {force_zero_scaling = true} })

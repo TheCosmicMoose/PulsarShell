@@ -29,8 +29,6 @@ QtObject {
     property color highlightGreen:  curTheme.highlightGreen
     property color accentAqua:      curTheme.accentAqua
     property color highlightAqua:   curTheme.highlightAqua
-    property color accentLightBlue: curTheme.accentLightBlue
-    property color highlightLightBlue: curTheme.highlightLightBlue
     property color accentBlue:      curTheme.accentBlue
     property color highlightBlue:   curTheme.highlightBlue
     property color accentPurple:    curTheme.accentPurple

@@ -125,4 +125,13 @@ Column {
             }
         }
     }
+    Text {
+        id: scratchpad
+        font: {
+            family: Theme.fontFamily
+            pointSize: Theme.fontSizePrimary
+        }
+        color: Theme.accentAqua
+
+    }
 }
