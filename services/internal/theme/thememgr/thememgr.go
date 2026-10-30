@@ -32,6 +32,7 @@ type Colors struct {
 	TextPrimary   string `json:"textPrimary"`
 	TextSecondary string `json:"textSecondary"`
 	TextContrast  string `json:"textContrast"`
+	TextBg        string `json:"textBg"`
 	// Accent and highlight colors
 	AccentRed       string `json:"accentRed"`
 	HighlightRed    string `json:"highlightRed"`

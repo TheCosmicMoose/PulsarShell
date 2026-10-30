@@ -8,6 +8,7 @@
     "textPrimary": "#fbf1d0",
     "textSecondary": "#ede4c5",
     "textContrast": "#59564a",
+    "textBg": "#bdae93",
 
     "accentRed": "#cc241d",
     "highlightRed": "#fb4934",
@@ -95,7 +96,7 @@
     "workspaceAccent1": "#d3869b",
     "workspaceAccent2": "#fa8846",
     "workspaceAccent3": "#aeba30",
-    "workspaceAccent4": "fb4934",
+    "workspaceAccent4": "#fb4934",
     "workspaceAccent5": "#5fba64"
   }
 }
