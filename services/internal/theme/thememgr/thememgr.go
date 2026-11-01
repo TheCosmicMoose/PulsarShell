@@ -81,6 +81,7 @@ type Font struct {
 	FontSizePrimary int    `json:"fontSizePrimary"`
 	FontSizeLarge   int    `json:"fontSizeLarge"`
 	FontSizeSmall   int    `json:"fontSizeSmall"`
+	FontSizeHeader  int    `json:"fontSizeHeader"`
 }
 
 type QuickshellMetrics struct {
@@ -239,6 +240,7 @@ func (t *Theme) Validate() error {
 	atLeast("font.fontSizePrimary", f.FontSizePrimary, 1)
 	atLeast("font.fontSizeLarge", f.FontSizeLarge, 1)
 	atLeast("font.fontSizeSmall", f.FontSizeSmall, 1)
+	atLeast("font.fontSizeHeader", f.FontSizeHeader, 1)
 
 	// Quickshell metrics
 	q := t.QuickshellMetrics

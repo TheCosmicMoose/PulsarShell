@@ -54,7 +54,8 @@
     "fontFamilyAlt": "JetBrainsMono Nerd Font Propo",
     "fontSizePrimary": 12,
     "fontSizeLarge": 14,
-    "fontSizeSmall": 10
+    "fontSizeSmall": 10,
+    "fontSizeHeader": 24
   },
   "quickshellMetrics": {
     "barThickness": 48,

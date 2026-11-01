@@ -18,6 +18,23 @@ Singleton {
         const base = xdg ? xdg : Quickshell.env("HOME") + "/.local/state"
         return base + "/pulsar_shell/weather.json"
     }
+    readonly property string locBinCmd: {
+        const xdg = Quickshell.env("XDG_STATE_HOME")
+        const base = xdg ? xdg : Quickshell.env("HOME") + ".config/pulsar_shell"
+        return "./" + base + "services/cmd/location/location"
+    }
+    readonly property string weathBinCmd: {
+        const xdg = Quickshell.env("XDG_STATE_HOME")
+        const base = xdg ? xdg : Quickshell.env("HOME") + ".config/pulsar_shell"
+        return "./" + base + "services/cmd/weather/weather"
+    }
+
+    function getLocation() {
+        Quickshell.execDetached(locBinCmd)
+    }
+    function getWeather() {
+        Quickshell.execDetached(weathBinCmd)
+    }
 
     FileView {
         id: file

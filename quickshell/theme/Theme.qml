@@ -86,6 +86,7 @@ Singleton {
                 property int    fontSizePrimary: 12
                 property int    fontSizeLarge:   14
                 property int    fontSizeSmall:   10
+                property int    fontSizeHeader:  24
             }
 
             property JsonObject quickshellMetrics: JsonObject {
@@ -159,6 +160,7 @@ Singleton {
     readonly property int fontSizePrimary:  json.font.fontSizePrimary
     readonly property int fontSizeLarge:    json.font.fontSizeLarge
     readonly property int fontSizeSmall:    json.font.fontSizeSmall
+    readonly property int fontSizeHeader:   json.font.fontSizeHeader
 
     // Bar size (vertPadding/horizontalPadding are the old names for yPadding/xPadding)
     readonly property int barThickness:       json.quickshellMetrics.barThickness
