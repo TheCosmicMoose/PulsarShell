@@ -7,10 +7,10 @@
 
 local terminal = "kitty"
 local fileManager = "nautilus"
-local menu = "vicinae toggle"
-local keybindHint = "vicinae toggle"
+local launcher = "qs ipc call launcher toggle" --quickshell launcher--
 local browser = "zen-browser"
-local editor = "idea"
+local ide = "zeditor"
+local textEditor = "nvim"
 local lockScreen = "hyprlock"
 local shutDown = "wlogout -b 6"
 
@@ -20,7 +20,7 @@ local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close()) --Super + Q closes active window
 hl.bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" })) -- Super + W toggles whether the active window is floating
-hl.bind(mainMod .. " + SHIFT + F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle"}))
+hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle"}))
 
 
 -- Move focus with mainMod + j,k,l,; --
@@ -67,12 +67,12 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), {mouse = true})
 
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(ide))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(textEditor))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprpicker -n --output-format=hex -a"))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd(shutDown))
-hl.bind(mainMod .. " + SLASH", hl.dsp.exec_cmd(keybindHint))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 
