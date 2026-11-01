@@ -99,8 +99,8 @@ Singleton {
                 property int barButtonHeight:     40
                 property int barButtonHalfHeight: 20
 
-                property int barRadius:           24
-                property int barButtonRadius:     20
+                property int barRadius:           0
+                property int barButtonRadius:     0
 
                 property int animDuration:        100
                 property int animLong:            200

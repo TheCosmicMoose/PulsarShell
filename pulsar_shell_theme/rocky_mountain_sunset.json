@@ -67,8 +67,8 @@
     "barButtonHeight": 40,
     "barButtonHalfHeight": 20,
 
-    "barRadius": 24,
-    "barButtonRadius": 20,
+    "barRadius": 0,
+    "barButtonRadius": 0,
 
     "animDuration": 100,
     "animLong": 200,
