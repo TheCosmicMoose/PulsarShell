@@ -129,6 +129,7 @@ Column {
 
             font.family: Theme.fontFamily
             font.pointSize: Theme.fontSizePrimary
+            horizontalAlignment: Text.AlignHCenter
 
             color: {
                 if (hovered) {

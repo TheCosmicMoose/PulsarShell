@@ -13,6 +13,7 @@ import (
 	"os"
 
 	"pulsar_shell/internal/atomicwrite"
+	"pulsar_shell/internal/theme/fastfetch"
 	"pulsar_shell/internal/theme/hyprland"
 	"pulsar_shell/internal/theme/kitty"
 	"pulsar_shell/internal/theme/starship"
@@ -108,6 +109,16 @@ func main() {
 		fail(err)
 	}
 	files = append(files, outFile{"zen userChrome.css", zenPath, zenConf, ".userChrome-*.tmp"})
+	//Prep fastfetch theme
+	fastfetchPath, err := fastfetch.ConfigPath()
+	if err != nil {
+		fail(err)
+	}
+	fastfetchConf, err := fastfetch.Render(t)
+	if err != nil {
+		fail(err)
+	}
+	files = append(files, outFile{"fastfetch config.jsonc", fastfetchPath, fastfetchConf, ".config-*.tmp"})
 	// Add the other apps here the same way (starship, hyprland, and so on).
 
 	// The current theme file goes last, so anything watching it (Quickshell)

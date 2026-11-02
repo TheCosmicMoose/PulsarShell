@@ -2,11 +2,14 @@ pragma Singleton
 import Quickshell
 import Quickshell.Io
 
-// Weather singleton. Reads weather.json (written by the weather program) and
-// exposes flat, camelCase properties for the widget.
+// Weather singleton.
+//
+// Flow: on startup the location program runs once. When it exits, the weather
+// timer starts; it runs the weather program immediately and then every 30
+// minutes. Each time the weather program exits, weather.json is re-read.
 //
 //   WeatherService.temperatureF
-//   WeatherService.forecast        -> array of 3 day objects (see below)
+//   WeatherService.forecast        -> array of 3 day objects
 //   WeatherService.hasData         -> false until a file has been loaded
 Singleton {
     id: root
@@ -18,22 +21,62 @@ Singleton {
         const base = xdg ? xdg : Quickshell.env("HOME") + "/.local/state"
         return base + "/pulsar_shell/weather.json"
     }
-    readonly property string locBinCmd: {
-        const xdg = Quickshell.env("XDG_STATE_HOME")
-        const base = xdg ? xdg : Quickshell.env("HOME") + ".config/pulsar_shell"
-        return "./" + base + "services/cmd/location/location"
-    }
-    readonly property string weathBinCmd: {
-        const xdg = Quickshell.env("XDG_STATE_HOME")
-        const base = xdg ? xdg : Quickshell.env("HOME") + ".config/pulsar_shell"
-        return "./" + base + "services/cmd/weather/weather"
+
+    // Where the two Go programs are installed, for example with:
+    //   go build -o ~/.local/bin/pulsar-location ./cmd/location
+    //   go build -o ~/.local/bin/pulsar-weather  ./cmd/weather
+    readonly property string binDir: Quickshell.env("HOME") + "/.local/bin"
+    readonly property string locationBin: binDir + "/pulsar-location"
+    readonly property string weatherBin: binDir + "/pulsar-weather"
+
+    readonly property int refreshMs: 30 * 60 * 1000   // 30 minutes
+
+    // 1. Fetch the location once at startup.
+    Process {
+        id: locationProc
+        running: true
+        command: [root.locationBin]
+
+        stderr: StdioCollector {
+            onStreamFinished: if (text.length > 0) console.warn("pulsar-location:", text.trim())
+        }
+
+        onExited: (exitCode, exitStatus) => {
+            if (exitCode !== 0) console.warn("pulsar-location exited with code", exitCode)
+            // Start the refresh cycle either way. If the fetch failed, the weather
+            // program can still use the location file from an earlier run.
+            refreshWeather.restart()
+        }
     }
 
-    function getLocation() {
-        Quickshell.execDetached(locBinCmd)
+    // 2. Fetch the weather.
+    Process {
+        id: weatherProc
+        running: false
+        command: [root.weatherBin]
+
+        stderr: StdioCollector {
+            onStreamFinished: if (text.length > 0) console.warn("pulsar-weather:", text.trim())
+        }
+
+        onExited: (exitCode, exitStatus) => {
+            if (exitCode !== 0) console.warn("pulsar-weather exited with code", exitCode)
+            // Re-read the file now rather than relying on the file watcher, which
+            // might not notice a file that didn't exist when the shell started.
+            file.reload()
+        }
     }
-    function getWeather() {
-        Quickshell.execDetached(weathBinCmd)
+
+    // 3. Run the weather program at once, then every refreshMs.
+    Timer {
+        id: refreshWeather
+
+        interval: root.refreshMs
+        running: false
+        repeat: true
+        triggeredOnStart: true
+
+        onTriggered: weatherProc.running = true
     }
 
     FileView {
@@ -52,19 +95,17 @@ Singleton {
             property string updated: ""
 
             property JsonObject current: JsonObject {
-                property real   temperature_f:   0
-                property real   feels_like_f:    0
-                property string condition:       ""
-                property string icon:            ""
-                property int    weather_code:    0
-                property bool   is_day:          true
-                property real   wind_speed_mph:  0
+                property real   temperature_f:    0
+                property real   feels_like_f:     0
+                property string condition:        ""
+                property string icon:             ""
+                property int    weather_code:     0
+                property bool   is_day:           true
+                property real   wind_speed_mph:   0
                 property int    humidity_percent: 0
             }
 
-            // "forecast" is an array in the JSON, and a JsonObject can only
-            // describe a single object. A var property holds the whole array as
-            // plain JavaScript. Each element looks like:
+            // "forecast" is an array in the JSON, so it's a var. Each element:
             //   { day, date, condition, icon, weather_code,
             //     high_f, low_f, precip_chance_percent }
             property var forecast: []

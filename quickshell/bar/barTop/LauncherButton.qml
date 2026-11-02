@@ -7,7 +7,7 @@ import "../../launcher"
 Text {
     id: root
 
-    readonly property int glyph: "󰀘"
+    text:               "󰀘"
     font.family:        Theme.fontFamily
     font.pointSize:     Theme.fontSizePrimary
     color:              Theme.textPrimary
