@@ -10,7 +10,11 @@ Text {
     width: Theme.barButtonWidth
     horizontalAlignment: Text.AlignHCenter
 
-    color: Theme.textPrimary
+    color: {
+        if(fullConnection) return Theme.textPrimary
+        if(!wired && !wifi) return Theme.highlightRed
+        else return Theme.highlightOrange
+    }
     font.family: Theme.fontFamily
     font.pointSize: Theme.fontSizePrimary
 

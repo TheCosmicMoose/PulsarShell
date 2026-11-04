@@ -13,6 +13,7 @@ local ide = "zeditor"
 local textEditor = "nvim"
 local lockScreen = "hyprlock"
 local shutDown = "wlogout -b 6"
+local audioOSD = "qs ipc call audioosd show"
 
 local mainMod = "SUPER"
 
@@ -80,10 +81,22 @@ hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 ------- Multimedia Controls -------
 -----------------------------------
 
--- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+-- Laptop multimedia keys for volume and LCD brightness, calls the quickshell IPC for displaying the audio OSD popup
+hl.bind("XF86AudioRaiseVolume", function()
+    hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
+    hl.dsp.exec_cmd(audioOSD)
+    {locked = true, repeating = true}
+end)
+hl.bind("XF86AudioLowerVolume", function()
+    hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-")
+    hl.dsp.exec_cmd(audioOSD)
+    {locked = true, repeating = true}
+end)
+hl.bind("XF86AudioMute", function()
+    hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ toggle")
+    hl.dsp.exec_cmd(audioOSD)
+    {locked = true, repeating = true}
+end)
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
