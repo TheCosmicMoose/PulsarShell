@@ -22,7 +22,7 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + Q", hl.dsp.window.close()) --Super + Q closes active window
 hl.bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" })) -- Super + W toggles whether the active window is floating
 hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle"}))
-
+hl.bind(mainMod .. " + M", hl.dsp.layout("cyclenext"))
 
 -- Move focus with mainMod + j,k,l,; --
 

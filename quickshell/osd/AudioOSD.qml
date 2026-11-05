@@ -5,6 +5,7 @@ import Quickshell.Services.Pipewire
 import Quickshell.Widgets
 import Quickshell.Hyprland
 import "../theme"
+import "../services"
 
 Scope {
     id: root
@@ -74,7 +75,7 @@ Scope {
 
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
-                        text:           ""
+                        text:           AudioService.audioIcon + " | " + AudioService.deviceIcon
                         font.family:    Theme.fontFamily
                         color:          Theme.TextPrimary
                         font.pointSize: Theme.fontSizeLarge
@@ -93,7 +94,7 @@ Scope {
                                 top: parent.top
                                 bottom: parent.bottom
                             }
-                            implicitWidth: parent.width * (Pipewire.defaultAudioSink?.audio.volume ?? 0)
+                            implicitWidth: parent.width * (AudioService.volume)
                             radius: parent.radius
                             color: Theme.textPrimary
                         }

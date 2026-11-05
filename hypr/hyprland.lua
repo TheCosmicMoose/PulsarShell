@@ -90,6 +90,14 @@ hl.config({
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
+-- Sets the Master layout to orient to top on the secondary display
+-- if your secondary display is in landscape you can remove this section
+for i = 11, 20 do
+    local ws = i
+	hl.workspace_rule({workspace = toString(i), layout_opts = {orientation = top}})
+end
+
+
 -- Vicinae layers are temporary until Pulsar-Launch is done
 
 hl.layer_rule({
