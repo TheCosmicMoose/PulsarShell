@@ -24,7 +24,8 @@ Column {
     width:          Theme.barThickness
     spacing:        Theme.barSpacing
     topPadding:     Theme.vertPadding
-    leftPadding:    Theme.horizontalPadding
+    // Center barButtonWidth-wide items in the bar.
+    leftPadding:    (Theme.barThickness - Theme.barButtonWidth) / 2
 
     LauncherButton {}
     Workspaces { screen: root.screen }

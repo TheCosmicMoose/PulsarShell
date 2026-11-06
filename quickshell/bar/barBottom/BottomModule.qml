@@ -7,8 +7,9 @@ Column {
 
     width:          Theme.barThickness
     spacing:        Theme.barSpacing
-    topPadding:     Theme.vertPadding
-    leftPadding:    Theme.horizontalPadding
+    bottomPadding:  Theme.vertPadding
+    // Center barButtonWidth-wide items in the bar.
+    leftPadding:    (Theme.barThickness - Theme.barButtonWidth) / 2
 
     Performance {}
     Audio {}

@@ -7,6 +7,8 @@ import "../../launcher"
 Text {
     id: root
 
+    width:              Theme.barButtonWidth
+    horizontalAlignment: Text.AlignHCenter
     text:               "󰀘"
     font.family:        Theme.fontFamily
     font.pointSize:     Theme.fontSizePrimary
