@@ -1,14 +1,17 @@
+pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
 
-// App launcher entry point. Add `Launcher {}` to shell.qml, then bind a key to:
+// App launcher entry point. A singleton, so anything can call Launcher.show(),
+// Launcher.hide() or check Launcher.open. shell.qml references it at startup so
+// the IPC handler is registered; bind a key to:
 //     qs ipc call launcher toggle
 //
 // The window only exists while the launcher is open (LazyLoader), so every
 // open starts with an empty search box and the first tab selected.
-Scope {
+Singleton {
     id: root
 
     property bool open: false

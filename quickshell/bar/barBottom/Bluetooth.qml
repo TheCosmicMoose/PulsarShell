@@ -9,7 +9,7 @@ Text {
 
     color: {
         if (connected) return Theme.textPrimary
-        if (enabled) return Theme.textSecondary
+        if (adapterOn) return Theme.textSecondary
         else return Theme.textBg
     }
     font.family: Theme.fontFamily
@@ -24,11 +24,12 @@ Text {
     readonly property var enabledAdapters: Bluetooth.adapters.values.find(d => d.enabled === true)
 
     readonly property bool connected: connectedDevices !== undefined
-    readonly property bool enabled: enabledAdapters !== undefined
+    // Not named "enabled": that would shadow Item.enabled, which turns off input.
+    readonly property bool adapterOn: enabledAdapters !== undefined
 
     text: {
         if(connected) return bluetoothConnected
-        if(enabled) return bluetoothDisconnected
+        if(adapterOn) return bluetoothDisconnected
         else return bluetoothDisabled
     }
 }

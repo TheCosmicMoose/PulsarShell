@@ -6,7 +6,7 @@ import "../../services"
 Text {
     id: root
     width: Theme.barButtonWidth
-    horizontalAlignment: text.AlignHCenter
+    horizontalAlignment: Text.AlignHCenter
 
     color: Theme.textPrimary
     font.family: Theme.fontFamily

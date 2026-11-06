@@ -35,7 +35,10 @@ Text {
     readonly property bool wifi:  wifiDevice !== undefined && wifiDevice.connected
 
     // True when the system can actually reach the internet (not just a link).
+    // If NetworkManager's connectivity check is off, connectivity stays Unknown;
+    // treat any link as online then, rather than always showing "no internet".
     readonly property bool fullConnection: Networking.connectivity === NetworkConnectivity.Full
+        || (Networking.connectivity === NetworkConnectivity.Unknown && (wired || wifi))
 
     // Wi-Fi details ------------------------------------------------------
     // wifiDevice.networks lists every network in range, so pick the one that is

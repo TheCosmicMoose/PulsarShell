@@ -127,6 +127,7 @@ Column {
             readonly property bool isUrgent: ws !== undefined && ws.urgent
             readonly property bool hovered: mouse.containsMouse
 
+            width: Theme.barButtonWidth
             font.family: Theme.fontFamily
             font.pointSize: Theme.fontSizePrimary
             horizontalAlignment: Text.AlignHCenter
@@ -162,6 +163,8 @@ Column {
     // Scratchpad indicator -------------------------------------------------
     Text {
         visible: root.scratchpadActive
+        width: Theme.barButtonWidth
+        horizontalAlignment: Text.AlignHCenter
 
         font.family: Theme.fontFamily
         font.pointSize: Theme.fontSizePrimary
