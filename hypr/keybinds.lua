@@ -12,7 +12,7 @@ local browser = "zen-browser"
 local ide = "zeditor"
 local textEditor = "nvim"
 local lockScreen = "qs ipc call lock lock" --quickshell lockscreen--
-local shutDown = "wlogout -b 6"
+local shutDown = "qs ipc call power toggle" --quickshell power menu--
 local audioOSD = "qs ipc call audioosd show"
 
 local mainMod = "SUPER"

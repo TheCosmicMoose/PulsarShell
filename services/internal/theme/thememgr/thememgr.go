@@ -118,7 +118,7 @@ type ZenColors struct {
 	PersonalToolbarColor1 string `json:"personalToolbarColor1"`
 	PersonalToolbarColor2 string `json:"personalToolbarColor2"`
 	BrowserBg1            string `json:"browserBg1"`
-	BrowserBg2            string `json:"broserBg2"`
+	BrowserBg2            string `json:"browserBg2"`
 	WorkspaceAccent1      string `json:"workspaceAccent1"`
 	WorkspaceAccent2      string `json:"workspaceAccent2"`
 	WorkspaceAccent3      string `json:"workspaceAccent3"`

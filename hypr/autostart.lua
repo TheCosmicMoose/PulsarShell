@@ -1,6 +1,6 @@
 hl.on("hyprland.start", function ()
-	hl.exec_cmd("nm-applet & udiskie & cliphist")
+	hl.exec_cmd("nm-applet & udiskie")
+	hl.exec_cmd("wl-paste --watch clipvault store")
 	hl.exec_cmd("quickshell & hyprpaper")
 	hl.exec_cmd("hypridle")
-	hl.exec_cmd("vicinae server")
 end)

@@ -83,6 +83,16 @@ Singleton {
         onExited: code => root.profilesAvailable = code === 0
     }
 
+    // Opening the flyout from a keybind ----------------------------------------------
+    //     qs ipc call power toggle
+    // The power button on the focused monitor's bar opens (or closes) its flyout.
+    signal flyoutRequested()
+
+    IpcHandler {
+        target: "power"
+        function toggle(): void { root.flyoutRequested() }
+    }
+
     // Session actions ---------------------------------------------------------------
     function shutdown() { Quickshell.execDetached(["systemctl", "poweroff"]) }
     function reboot()   { Quickshell.execDetached(["systemctl", "reboot"]) }

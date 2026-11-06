@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Hyprland
 import "../../theme"
 import "../../services"
 import "../../flyouts"
@@ -25,6 +26,16 @@ Text {
     Component {
         id: flyoutComponent
         PowerFlyout {}
+    }
+
+    // `qs ipc call power toggle` (Ctrl+Alt+Delete): only the bar on the focused
+    // monitor responds.
+    Connections {
+        target: PowerService
+        function onFlyoutRequested() {
+            if (Hyprland.focusedMonitor?.name === QsWindow.window?.screen?.name)
+                QsWindow.window.toggleFlyout(root, flyoutComponent)
+        }
     }
 
     MouseArea {
