@@ -15,4 +15,5 @@ Column {
     Audio {}
     Bluetooth {}
     Networking {}
+    NotificationButton {}
 }
