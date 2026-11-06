@@ -2,15 +2,30 @@ import Quickshell
 import QtQuick
 import "../../theme"
 
+// Top section of the left-edge bar. The bar window is created once per
+// monitor (Variants over Quickshell.screens), so it must hand this module the
+// screen it lives on:
+//
+//   Variants {
+//       model: Quickshell.screens
+//       PanelWindow {
+//           required property var modelData
+//           screen: modelData
+//           TopModule { screen: modelData }
+//       }
+//   }
 Column {
     id:     root
 
+    // The monitor this bar is on; forwarded to Workspaces.
+    required property ShellScreen screen
+
+    // Column sizes its height from its children, padding and spacing.
     width:          Theme.barThickness
-    height:         LauncherButton.height + Workspaces.height + Theme.barSpacing
     spacing:        Theme.barSpacing
     topPadding:     Theme.vertPadding
     leftPadding:    Theme.horizontalPadding
 
     LauncherButton {}
-    Workspaces { screen: modelData }
+    Workspaces { screen: root.screen }
 }
