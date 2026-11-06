@@ -151,7 +151,7 @@ func ProfileDir() (string, error) {
 func Path() (string, error) {
 	profDir, err := ProfileDir()
 	if err != nil {
-		return "", fmt.Errorf("%x", err)
+		return "", fmt.Errorf("finding zen profile: %w", err)
 	}
 	return filepath.Join(profDir, "chrome", "userChrome.css"), nil
 }

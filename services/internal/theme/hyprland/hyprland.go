@@ -26,6 +26,7 @@ type data struct {
 	//Metrics for Hyprland windows
 	GapsIn              int
 	GapsOut             int
+	BorderGradientAngle int
 	WindowBorderWidth   int
 	WindowCornerRadius  int
 	AlphaActiveWindow   float64
@@ -53,6 +54,7 @@ func Render(t *theme.Theme) ([]byte, error) {
 	d := data{
 		GapsIn:                    t.HyprlandMetrics.GapsIn,
 		GapsOut:                   t.HyprlandMetrics.GapsOut,
+		BorderGradientAngle:       t.Transparency.BorderGradientAngle,
 		WindowBorderWidth:         t.HyprlandMetrics.WindowBorderWidth,
 		WindowCornerRadius:        t.HyprlandMetrics.WindowCornerRadius,
 		AlphaActiveWindow:         t.Transparency.AlphaActiveWindow,

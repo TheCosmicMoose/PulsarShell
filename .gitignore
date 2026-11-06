@@ -1,0 +1,4 @@
+# Go programs are built by scripts/install.sh into ~/.local/bin
+services/cmd/*/*
+!services/cmd/*/*.go
+!services/cmd/*/*.tmpl

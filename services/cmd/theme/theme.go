@@ -100,15 +100,18 @@ func main() {
 	}
 	files = append(files, outFile{"hyprland theme.lua", hyprlandPath, hyprlandConf, ".theme-*.tmp"})
 	//Prep zen theme
-	zenPath, err := zen.Path()
-	if err != nil {
-		fail(err)
+	// Zen is optional: it has no profile until it has been opened once (and
+	// may not be installed at all), so skip it with a warning rather than
+	// failing every other app's theme.
+	if zenPath, err := zen.Path(); err != nil {
+		warn("skipping zen (open Zen once, then apply the theme again):", err)
+	} else {
+		zenConf, err := zen.Render(t)
+		if err != nil {
+			fail(err)
+		}
+		files = append(files, outFile{"zen userChrome.css", zenPath, zenConf, ".userChrome-*.tmp"})
 	}
-	zenConf, err := zen.Render(t)
-	if err != nil {
-		fail(err)
-	}
-	files = append(files, outFile{"zen userChrome.css", zenPath, zenConf, ".userChrome-*.tmp"})
 	//Prep fastfetch theme
 	fastfetchPath, err := fastfetch.ConfigPath()
 	if err != nil {
@@ -119,6 +122,13 @@ func main() {
 		fail(err)
 	}
 	files = append(files, outFile{"fastfetch config.jsonc", fastfetchPath, fastfetchConf, ".config-*.tmp"})
+	// The config points at logo.txt next to it, so write that too (it has no
+	// theme data, but a fresh install has no other way to get it).
+	logoPath, err := fastfetch.LogoPath()
+	if err != nil {
+		fail(err)
+	}
+	files = append(files, outFile{"fastfetch logo.txt", logoPath, fastfetch.Logo(), ".logo-*.tmp"})
 	// Add the other apps here the same way (starship, hyprland, and so on).
 
 	// The current theme file goes last, so anything watching it (Quickshell)
