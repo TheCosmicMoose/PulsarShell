@@ -15,6 +15,7 @@ Column {
     Audio {}
     Bluetooth {}
     Networking {}
+    ThemeButton {}
     NotificationButton {}
     Power {}                // always last
 }

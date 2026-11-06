@@ -484,6 +484,9 @@ step_links() {
         link_file "$REPO_DIR/greetd/config.toml" "$GREETD_CONFIG" sudo || return 1
     fi
 
+    # The wallpaper picker reads this folder.
+    mkdir -p "$HOME/Pictures/Wallpapers"
+
     ok "$LINKS_MADE new link(s), $LINKS_KEPT already in place, $LINKS_REPLACED existing file(s) moved to the backup."
 }
 
