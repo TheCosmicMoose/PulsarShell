@@ -1,5 +1,4 @@
 hl.on("hyprland.start", function ()
-	hl.exec_cmd("swaync")
 	hl.exec_cmd("nm-applet & udiskie & cliphist")
 	hl.exec_cmd("quickshell & hyprpaper")
 	hl.exec_cmd("hypridle")
