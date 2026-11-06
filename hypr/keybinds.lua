@@ -11,7 +11,7 @@ local launcher = "qs ipc call launcher toggle" --quickshell launcher--
 local browser = "zen-browser"
 local ide = "zeditor"
 local textEditor = "nvim"
-local lockScreen = "hyprlock"
+local lockScreen = "qs ipc call lock lock" --quickshell lockscreen--
 local shutDown = "wlogout -b 6"
 local audioOSD = "qs ipc call audioosd show"
 
@@ -74,6 +74,7 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(textEditor))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprpicker -n --output-format=hex -a"))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd(shutDown))
+hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd(lockScreen))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 
