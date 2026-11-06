@@ -32,4 +32,7 @@ ShellRoot {
     readonly property var notifications: NotificationService
     // And the lockscreen, so `qs ipc call lock lock` works from the first keypress.
     readonly property var lock: Lock
+    // And the Bluetooth pairing agent, so pairing requests are answered even
+    // before the Bluetooth flyout has been opened.
+    readonly property var bluetoothAgent: BluetoothAgent
 }

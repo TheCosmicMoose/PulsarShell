@@ -40,6 +40,9 @@ PanelWindow {
     color: Qt.alpha(Theme.bgPrimary, Theme.alphaBG)
 
     WlrLayershell.namespace: "pulsar-bar"
+    // While a flyout is open, let it take the keyboard when clicked (for
+    // password and PIN boxes). The rest of the time the bar never takes it.
+    WlrLayershell.keyboardFocus: flyout.visible ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
 
     // Bar sections -----------------------------------------------------------
     TopModule {
@@ -97,6 +100,10 @@ PanelWindow {
         anchor.edges: Edges.Left        // attach at the anchor point...
         anchor.gravity: Edges.Right     // ...and grow rightward, centered on it vertically
         anchor.adjustment: PopupAdjustment.Slide   // slide up/down to stay on screen
+
+        // Content grows and shrinks (lists filling in, rows expanding); keep it
+        // centered on the icon.
+        onImplicitHeightChanged: if (visible) anchor.updateAnchor()
 
         Rectangle {
             id: frame
