@@ -105,6 +105,13 @@ PanelWindow {
         // centered on the icon.
         onImplicitHeightChanged: if (visible) anchor.updateAnchor()
 
+        // However it was hidden (outside click, a button inside it hiding its
+        // window), unload the content so e.g. Bluetooth scanning stops.
+        onVisibleChanged: if (!visible) {
+            bar.flyoutAnchor = null
+            bar.flyoutContent = null
+        }
+
         Rectangle {
             id: frame
 
