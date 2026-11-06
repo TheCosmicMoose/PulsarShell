@@ -6,6 +6,7 @@ import "launcher"
 import "services"
 import "auth"
 import "lock"
+import "wallpaper"
 
 // Composition root: lists what runs, nothing more. Per-screen pieces go inside
 // the Variants; global pieces sit beside it.
@@ -35,4 +36,6 @@ ShellRoot {
     // And the Bluetooth pairing agent, so pairing requests are answered even
     // before the Bluetooth flyout has been opened.
     readonly property var bluetoothAgent: BluetoothAgent
+    // And the wallpaper picker, for `qs ipc call wallpaper toggle`.
+    readonly property var wallpaperPicker: WallpaperPicker
 }
