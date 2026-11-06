@@ -1,6 +1,8 @@
 import QtQuick
+import Quickshell
 import Quickshell.Bluetooth
 import "../../theme"
+import "../../flyouts"
 
 Text {
     id: root
@@ -31,5 +33,17 @@ Text {
         if(connected) return bluetoothConnected
         if(adapterOn) return bluetoothDisconnected
         else return bluetoothDisabled
+    }
+
+    // Click to open the bluetooth flyout beside this icon.
+    Component {
+        id: flyoutComponent
+        BluetoothFlyout {}
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: QsWindow.window.toggleFlyout(root, flyoutComponent)
     }
 }

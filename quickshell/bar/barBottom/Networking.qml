@@ -1,6 +1,8 @@
 import QtQuick
+import Quickshell
 import Quickshell.Networking
 import "../../theme"
+import "../../flyouts"
 
 // Bar indicator for the network connection. Shows an icon for wired or Wi-Fi
 // (with signal strength), and a different one when there's no connection.
@@ -58,5 +60,17 @@ Text {
             return wifiBars[Math.min(4, Math.floor(wifiStrength * 5))]
         }
         return noNetwork
+    }
+
+    // Click to open the network flyout beside this icon.
+    Component {
+        id: flyoutComponent
+        NetworkFlyout {}
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: QsWindow.window.toggleFlyout(root, flyoutComponent)
     }
 }

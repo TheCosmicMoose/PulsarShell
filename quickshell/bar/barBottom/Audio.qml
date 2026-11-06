@@ -1,6 +1,8 @@
 import QtQuick
+import Quickshell
 import Quickshell.Services.Pipewire
 import "../../theme"
+import "../../flyouts"
 import "../../services"
 
 Text {
@@ -23,5 +25,12 @@ Text {
         hoverEnabled: true
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
+        onClicked: QsWindow.window.toggleFlyout(root, flyoutComponent)
+    }
+
+    // Click to open the audio flyout beside this icon.
+    Component {
+        id: flyoutComponent
+        AudioFlyout {}
     }
 }
