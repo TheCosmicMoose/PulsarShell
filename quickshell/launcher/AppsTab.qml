@@ -40,6 +40,7 @@ Item {
     function move(delta) {
         if (filtered.length === 0) return
         list.currentIndex = Math.max(0, Math.min(filtered.length - 1, list.currentIndex + delta))
+        list.positionViewAtIndex(list.currentIndex, ListView.Contain)
     }
 
     function activateCurrent() {
