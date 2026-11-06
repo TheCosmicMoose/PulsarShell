@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Widgets
 import "../theme"
 
@@ -64,8 +65,13 @@ Item {
                       glyph: "\uf120", target: p }]
         }
 
-        case "files":
-            return [hint("File search is coming soon", "\uf07b")]
+        case "files": {
+            if (p === "") return [hint("Type part of a file or folder name", "\uf07b")]
+            if (fileResults.length > 0) return fileResults
+            if (fileError !== "") return [hint(fileError, "\uf071")]
+            if (fileIndexing) return [hint("Indexing your files...", "\uf07b")]
+            return [hint("No matching files or folders", "\uf07b")]
+        }
         }
         return []
     }
@@ -127,6 +133,7 @@ Item {
     function move(delta) {
         if (results.length === 0) return
         list.currentIndex = Math.max(0, Math.min(results.length - 1, list.currentIndex + delta))
+        list.positionViewAtIndex(list.currentIndex, ListView.Contain)
     }
 
     function activateCurrent() {
@@ -142,6 +149,9 @@ Item {
             break
         case "website":
         case "web":
+            Quickshell.execDetached(["xdg-open", r.target])
+            break
+        case "file":
             Quickshell.execDetached(["xdg-open", r.target])
             break
         case "command":
@@ -173,6 +183,102 @@ Item {
 
     // New results: select the first row.
     onResultsChanged: list.currentIndex = 0
+
+    // File search ("/") -------------------------------------------------------
+    // The first time "/" is used in a launcher session, fd lists every file
+    // and folder under $HOME into an index file; fzf then fuzzy-matches each
+    // query against that index (a few ms even for large homes). Searches run
+    // against the previous session's index straight away while the new one
+    // is built, and re-run when it's ready.
+    readonly property string home: Quickshell.env("HOME")
+    readonly property string fileIndex: (Quickshell.env("XDG_RUNTIME_DIR") || "/tmp") + "/pulsar_shell/launcher-files.txt"
+
+    // Folders (relative to $HOME) that are big and rarely what you're after.
+    property var excludedDirs: [".git", "node_modules", ".cache", ".local/share/Trash",
+        ".local/share/Steam", ".steam", ".var", ".npm", ".cargo", ".rustup", "go/pkg",
+        ".mozilla", ".zen", "__pycache__"]
+
+    property var fileResults: []
+    property bool fileIndexing: false
+    property bool fileIndexStarted: false
+    property string fileError: ""
+    property bool fileSearchQueued: false
+
+    onModeChanged: if (mode === "files") startFileSearch()
+    onPayloadChanged: if (mode === "files") searchFiles()
+
+    function startFileSearch() {
+        if (!fileIndexStarted) {
+            fileIndexStarted = true
+            fileIndexing = true
+            let excludes = []
+            for (const d of excludedDirs) excludes = excludes.concat(["--exclude", d])
+            indexProc.command = ["sh", "-c",
+                'out="$1"; shift; ' +
+                'fd=$(command -v fd || command -v fdfind) || exit 127; ' +
+                'command -v fzf >/dev/null || exit 126; ' +
+                'mkdir -p "$(dirname "$out")" && chmod 700 "$(dirname "$out")" || exit 1; ' +
+                '"$fd" --type f --type d --hidden --base-directory "$HOME" "$@" . > "$out.tmp" && mv "$out.tmp" "$out"',
+                "sh", fileIndex].concat(excludes)
+            indexProc.running = true
+        }
+        searchFiles()
+    }
+
+    function searchFiles() {
+        if (payload === "") {
+            fileResults = []
+            return
+        }
+        // One search at a time; if the query changes mid-search, run again
+        // with the latest text when it finishes.
+        if (findProc.running) fileSearchQueued = true
+        else findProc.running = true
+    }
+
+    // fd path (relative to $HOME, folders end in "/") -> result row
+    function fileResult(rel) {
+        const isDir = rel.endsWith("/")
+        const clean = isDir ? rel.slice(0, -1) : rel
+        const slash = clean.lastIndexOf("/")
+        return {
+            kind: "file",
+            title: clean.slice(slash + 1) + (isDir ? "/" : ""),
+            subtitle: slash < 0 ? "~" : "~/" + clean.slice(0, slash),
+            glyph: isDir ? "\uf07b" : "\uf15b",
+            target: home + "/" + clean
+        }
+    }
+
+    Process {
+        id: indexProc
+        onExited: code => {
+            root.fileIndexing = false
+            if (code === 127) root.fileError = "File search needs fd (pacman -S fd)"
+            else if (code === 126) root.fileError = "File search needs fzf (pacman -S fzf)"
+            else if (code !== 0) root.fileError = "Couldn't index your files"
+            else if (root.mode === "files") root.searchFiles()     // re-run against the fresh index
+        }
+    }
+
+    Process {
+        id: findProc
+        // --scheme=path ranks matches in file names above matches in folders.
+        command: ["sh", "-c", '{ fzf --filter "$1" --scheme=path < "$2"; } 2>/dev/null | head -n "$3"',
+                  "sh", root.payload, root.fileIndex, String(root.maxResults)]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (root.mode !== "files") return
+                root.fileResults = text.split("\n").filter(l => l !== "").map(l => root.fileResult(l))
+            }
+        }
+        onExited: {
+            if (root.fileSearchQueued) {
+                root.fileSearchQueued = false
+                running = true
+            }
+        }
+    }
 
     // The list --------------------------------------------------------------
     ListView {
@@ -274,7 +380,7 @@ Item {
                 "Type to search apps",
                 "@ site     open a website",
                 "# text     search the web",
-                "/ name     find a file",
+                "/ name     find a file or folder",
                 "$ cmd      run in kitty"
             ]
 

@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import "../theme"
 
 // The launcher window itself. With no anchors set, a layer-shell window is
@@ -28,6 +29,13 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
     // Exclusive: the launcher gets the keyboard until it closes.
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+
+    // Clicking anywhere outside the launcher closes it.
+    HyprlandFocusGrab {
+        active: true
+        windows: [win]
+        onCleared: win.dismissed()
+    }
 
     function cycleTab(step) {
         currentTab = (currentTab + step + tabNames.length) % tabNames.length
