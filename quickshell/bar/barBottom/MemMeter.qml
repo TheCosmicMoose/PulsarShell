@@ -4,7 +4,7 @@ import "../../services"
 
 Gauge {
     value:      SystemMonitor.memPercent
-    icon:       ""
+    icon:       ""
     trackColor: Theme.accentRed
     fillColor:  Theme.highlightRed
 }
