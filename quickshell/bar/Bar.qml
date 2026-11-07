@@ -30,14 +30,16 @@ PanelWindow {
 
     required property ShellScreen modelData
     screen: modelData
+    property bool barBg: false
 
     anchors {
         left: true
         top: true
         bottom: true
     }
+
     implicitWidth: Theme.barThickness
-    color: "transparent"
+    color: barBg ? Theme.bgPrimary : "transparent"
 
     WlrLayershell.namespace: "pulsar-bar"
 

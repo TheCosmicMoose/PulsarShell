@@ -112,7 +112,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     elide: Text.ElideRight
                     text: row.modelData.name
-                    color: row.selected ? Theme.accentBlue : Theme.textPrimary
+                    color: Theme.textPrimary
                     font.family: Theme.fontFamily
                     font.pointSize: Theme.fontSizePrimary
                 }
