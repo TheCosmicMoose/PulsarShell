@@ -95,7 +95,7 @@ hl.config({
 -- if your secondary display is in landscape you can remove this section
 for i = 11, 20 do
     local ws = i
-	hl.workspace_rule({workspace = toString(i), layout_opts = {orientation = top}})
+	hl.workspace_rule({workspace = tostring(i), layout_opts = {orientation = top}})
 end
 
 
