@@ -51,8 +51,9 @@ type data struct {
 	Red    string
 	Aqua   string
 
-	LogoWhite string // the logo's $1 color
-	LogoBlue  string // the logo's $2 color
+	LogoWhite  string // the logo's $1 color
+	LogoBlue   string // the logo's $2 color
+	LogoCenter string // the logo's $3 color
 }
 
 // sgr converts "#rrggbb" into "38;2;r;g;b".
@@ -138,8 +139,9 @@ func Render(t *theme.Theme) ([]byte, error) {
 		Red:    cv.sgr(c.HighlightRed),    // was 167 and 196
 		Aqua:   cv.sgr(c.HighlightAqua),   // was 65
 
-		LogoWhite: cv.sgr(c.TextPrimary),
-		LogoBlue:  cv.sgr(c.AccentBlue),
+		LogoWhite:  cv.sgr(c.TextPrimary),
+		LogoBlue:   cv.sgr(c.AccentBlue),
+		LogoCenter: cv.sgr(c.HighlightBlue),
 	}
 	if cv.err != nil {
 		return nil, fmt.Errorf("converting fastfetch colors: %w", cv.err)
