@@ -2,7 +2,7 @@
 ### What is Pulsar Shell
 Pulsar is my personal work in progress Quickshell based shell for Hyprland. The style is heavily inspired by Omarchy's Quickshell config but with the implementation simplified a bit. I am using this as a project to learn more about coding so there may be bugs, and not everything is feature complete yet, but it should generally be fully functional.
 
-** AI Disclosure **
+**AI Disclosure**
 I used Qwen 3.5 and Claude Opus 5.5 to assist with development, for both debugging, and helping me keep things rolling when I hit the limits of my knowledge and Quickshell's terrible documentation.
 
 ### Pulsar Shell Features
@@ -33,7 +33,7 @@ I used Qwen 3.5 and Claude Opus 5.5 to assist with development, for both debuggi
  - System Info flyout: will open by clicking on the cpu or memory gauge bar widgets, and display detailed system stats.
  - HyprIdle configuration
 ## Installation Instructions
-** This shell is for Arch Based Distros, the install script will NOT work on any other distribution **
+**This shell is for Arch Based Distros, the install script will NOT work on any other distribution**
 ### Preparation
 Whether you are installing on a fresh system or an existing config, you need to install git and base-devel
 `sudo pacman -S git base-devel`
@@ -51,10 +51,10 @@ There are 5 options for you to choose from at the start:
  5. Cancel: cancel the installation.
 Once you choose an option just monitor the terminal and enter your password as necessary and verify package installs. Once the script finishes running it will prompt you to reboot. When you log back in you should be in Pulsar Shell
 ### Post Install
-** Hyprland will display an error at login because monitors.lua isn't present, this is not a critical bug, but I am going to look into fixing this issue. **
+**Hyprland will display an error at login because monitors.lua isn't present, this is not a critical bug, but I am going to look into fixing this issue.**
 To fix the error open Display settings (nwg-look) set your display resolutions and placement and apply, nwg-look will generate monitors.lua and the error will go away.
 
-** Unless your main monitor happens to be HDMI-A-1 and your second monitor is DP-3 workspace indicators will appear not to be working **
+**Unless your main monitor happens to be HDMI-A-1 and your second monitor is DP-3 workspace indicators will appear not to be working**
 To configure your main and secondary monitors, first run: `hyprctl monitors` and make note of your monitor names (e.g. eDP1, HDMI-A-1) and then run ` ./~/.local/bin/displays newMain <YourMainMonitor> newSec <YourSecondaryMonitor>` This will set the per monitor workspace correctly.
 
 After installing, place any wallpapers you want to use in your wallpaper folder and they should automatically be read by the wallpaper switcher. To change wallpaper right click the painter's palette on the menu bar and the wallpaper switcher will appear.
