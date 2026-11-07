@@ -52,13 +52,20 @@ Singleton {
         if (!path) return
         error = ""
         applyProc.command = ["sh", "-c", root.applyScript, "sh", path, configPath]
+            .concat(Quickshell.screens.map(s => s.name))
         applyProc.running = true
         hide()
     }
 
-    // $1 = image, $2 = hyprpaper.conf. In hyprlang a "#" starts a comment, so
-    // it's written as "##". "*" means every monitor in the config file; on
-    // the hyprctl command line an empty monitor means the same.
+    // $1 = image, $2 = hyprpaper.conf, $3... = monitor names.
+    // In hyprlang a "#" starts a comment, so it's written as "##".
+    //
+    // The config uses "monitor = *" (all monitors). A live switch can't send
+    // "*" (hyprpaper rejects it as an unknown monitor), and an empty monitor
+    // doesn't replace the config's "*" entry: hyprpaper only replaces a
+    // setting whose monitor text matches exactly, and for "all monitors" it
+    // keeps using the first such setting. So the live switch names each
+    // monitor; a per-monitor setting always wins over "*".
     readonly property string applyScript:
         'img="$1"; conf="$2"; mkdir -p "$(dirname "$conf")" || exit 1; ' +
         'esc=$(printf "%s" "$img" | sed "s/#/##/g"); ' +
@@ -68,7 +75,9 @@ Singleton {
         '  echo "    path = $esc"; echo "    fit_mode = cover"; echo "}"; ' +
         '} > "$conf.tmp" && mv "$conf.tmp" "$conf" || exit 1; ' +
         'if pgrep -x hyprpaper >/dev/null; then ' +
-        '  hyprctl hyprpaper wallpaper ",$img,cover" 2>&1; ' +
+        '  shift 2; [ $# -gt 0 ] || set -- ""; status=0; ' +
+        '  for mon in "$@"; do hyprctl hyprpaper wallpaper "$mon,$img,cover" 2>&1 || status=1; done; ' +
+        '  exit $status; ' +
         'else ' +
         '  setsid -f hyprpaper >/dev/null 2>&1; ' +
         'fi'
