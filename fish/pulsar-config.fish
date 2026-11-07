@@ -35,7 +35,7 @@ alias lt='eza -aT --color=always --group-directories-first --icons=always' # tre
 alias l.="eza -a | grep -e '^\.'"                                          # show only dotfiles
 
 ## useful aliases
-alias fixpacman = "sudo rm /var/lib/pacman/db.lck"
+alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias tarnow='tar -acf '
 alias untar='tar -zxvf '
 alias wget='wget -c '
@@ -48,4 +48,4 @@ alias hw='hwinfo --short'
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 # Quick Ping test
-alias testping= 'ping -c 5 ping.archlinux.org'
+alias testping='ping -c 5 ping.archlinux.org'
