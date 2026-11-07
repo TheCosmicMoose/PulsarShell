@@ -35,7 +35,7 @@ STAMP="$(date +%Y-%m-%d_%H-%M-%S)"
 BACKUP_DIR="$STATE_DIR/backups/$STAMP"
 LOG_FILE="$STATE_DIR/logs/install_$STAMP.log"
 INSTALL_TYPE_FILE="$STATE_DIR/install-type"
-DEFAULT_THEME="$REPO_DIR/pulsar_shell_theme/rocky_mountain_sunset.json"
+DEFAULT_THEME="$REPO_DIR/pulsar_shell_theme/gruvbox_dark.json"
 
 # Where each repo folder is linked. Files listed in GENERATED are skipped:
 # the Go programs write them.
