@@ -37,8 +37,9 @@ Singleton {
             if (root.open) root.hide()
             else root.show()
         }
-        function show(): void { root.show() }
-        function hide(): void { root.hide() }
+        // Not named show(): `qs ipc call <target> show` runs `qs ipc show` instead.
+        function open(): void { root.show() }
+        function close(): void { root.hide() }
     }
 
     LazyLoader {
