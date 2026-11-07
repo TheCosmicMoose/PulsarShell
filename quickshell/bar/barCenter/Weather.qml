@@ -1,9 +1,11 @@
 import QtQuick
+import Quickshell
 import "../../theme"
 import "../../services"
+import "../../flyouts"
 
 // Bar indicator: shows the current condition glyph, and the temperature
-// while hovered.
+// while hovered. Click for the weather flyout.
 Text {
     id: root
 
@@ -27,5 +29,11 @@ Text {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         hoverEnabled: true
+        onClicked: QsWindow.window.toggleFlyout(root, flyoutComponent)
+    }
+
+    Component {
+        id: flyoutComponent
+        WeatherFlyout {}
     }
 }
