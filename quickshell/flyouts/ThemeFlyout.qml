@@ -34,7 +34,21 @@ Column {
         applying = file
         error = ""
         applyProc.command = [themeBin, file]
+        applyProc.started = false
         applyProc.running = true
+        startCheck.restart()
+    }
+
+    // A program that can't start never reports an exit, so check it started.
+    Timer {
+        id: startCheck
+        interval: 1500
+        onTriggered: {
+            if (!applyProc.started && root.applying !== "") {
+                root.error = "Couldn't run " + root.themeBin + " (run scripts/install.sh to build it)"
+                root.applying = ""
+            }
+        }
     }
 
     // List the themes: one compact JSON line per file (current_theme.json is
@@ -66,6 +80,8 @@ Column {
 
     Process {
         id: applyProc
+        property bool started: false
+        onStarted: started = true
         stderr: StdioCollector { id: applyErr }
         onExited: code => {
             if (code !== 0) {

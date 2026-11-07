@@ -40,9 +40,6 @@ PanelWindow {
     color: "transparent"
 
     WlrLayershell.namespace: "pulsar-bar"
-    // While a flyout is open, let it take the keyboard when clicked (for
-    // password and PIN boxes). The rest of the time the bar never takes it.
-    WlrLayershell.keyboardFocus: flyout.visible ? WlrKeyboardFocus.OnDemand : WlrKeyboardFocus.None
 
     // Bar sections -----------------------------------------------------------
     TopModule {
@@ -66,12 +63,14 @@ PanelWindow {
     property Item flyoutAnchor: null
     property Component flyoutContent: null
     readonly property bool flyoutOpen: flyout.visible
+    // Vertical center of the anchor icon, in screen coordinates.
+    property real flyoutCenterY: 0
 
     function openFlyout(item, content) {
         flyoutAnchor = item
         flyoutContent = content
-        if (flyout.visible) flyout.anchor.updateAnchor()   // move it to the new icon
-        else flyout.visible = true
+        flyoutCenterY = item.mapToItem(bar.contentItem, 0, item.height / 2).y
+        flyout.visible = true
     }
 
     function closeFlyout() {
@@ -85,25 +84,37 @@ PanelWindow {
         else openFlyout(item, content)
     }
 
-    PopupWindow {
+    // The flyout is its own layer-shell window placed just right of the bar,
+    // centered on the icon and kept on screen. (A PopupWindow attached to the
+    // bar looked the same, but under Hyprland's focus grab clicks inside it
+    // counted as outside clicks, so it closed instead of reacting.)
+    PanelWindow {
         id: flyout
 
         visible: false
+        screen: bar.screen
         color: "transparent"
+        anchors {
+            left: true
+            top: true
+        }
+        // Position by margins from the screen's top-left corner, ignoring the
+        // bar's reserved space (we place it next to the bar ourselves).
+        exclusionMode: ExclusionMode.Ignore
+        margins.left: bar.width + Theme.edgeMargin
+        margins.top: {
+            const h = implicitHeight
+            const screenH = bar.height
+            const y = bar.flyoutCenterY - h / 2
+            return Math.round(Math.max(Theme.edgeMargin, Math.min(screenH - h - Theme.edgeMargin, y)))
+        }
         implicitWidth: Math.max(1, frame.implicitWidth)
         implicitHeight: Math.max(1, frame.implicitHeight)
 
-        // Anchor to the bar window and work out the point ourselves (see the
-        // Connections below), so the flyout sits just past the bar's right edge
-        // rather than against the icon's own edge.
-        anchor.window: bar
-        anchor.edges: Edges.Left        // attach at the anchor point...
-        anchor.gravity: Edges.Right     // ...and grow rightward, centered on it vertically
-        anchor.adjustment: PopupAdjustment.Slide   // slide up/down to stay on screen
-
-        // Content grows and shrinks (lists filling in, rows expanding); keep it
-        // centered on the icon.
-        onImplicitHeightChanged: if (visible) anchor.updateAnchor()
+        WlrLayershell.namespace: "pulsar-flyout"
+        WlrLayershell.layer: WlrLayer.Top
+        // Take the keyboard when clicked (password and PIN boxes).
+        WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
         // However it was hidden (outside click, a button inside it hiding its
         // window), unload the content so e.g. Bluetooth scanning stops.
@@ -128,18 +139,6 @@ PanelWindow {
                 anchors.centerIn: parent
                 sourceComponent: bar.flyoutContent
             }
-        }
-    }
-
-    // Runs each time the flyout is shown or updateAnchor() is called.
-    Connections {
-        target: flyout.anchor
-
-        function onAnchoring() {
-            if (!bar.flyoutAnchor) return
-            const p = bar.flyoutAnchor.mapToItem(bar.contentItem, 0, bar.flyoutAnchor.height / 2)
-            flyout.anchor.rect.x = bar.width + Theme.edgeMargin
-            flyout.anchor.rect.y = p.y
         }
     }
 
