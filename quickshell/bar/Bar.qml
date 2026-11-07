@@ -37,7 +37,7 @@ PanelWindow {
         bottom: true
     }
     implicitWidth: Theme.barThickness
-    color: Qt.alpha(Theme.bgPrimary, Theme.alphaBG)
+    color: "transparent"
 
     WlrLayershell.namespace: "pulsar-bar"
     // While a flyout is open, let it take the keyboard when clicked (for

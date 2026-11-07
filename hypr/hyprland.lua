@@ -12,7 +12,7 @@ require("autostart")
 require("keybinds")
 require("theme")
 require("rules")
-
+require("monitors")
 -------------------------------
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------

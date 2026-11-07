@@ -13,7 +13,7 @@ PanelWindow {
     signal dismissed()
 
     property int currentTab: 0
-    readonly property var tabNames: ["Search", "Apps", "Clipboard", "System"]
+    readonly property var tabNames: [" Search", "󰀻 Apps", "󱓥 Clipboard", " System"]
 
     // The tab that should receive Up/Down/Enter. Tabs not built yet give null.
     readonly property var activeTab: currentTab === 0 ? search
@@ -75,9 +75,9 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         radius: Theme.barRadius
-        color: Qt.alpha(Theme.bgPrimary, Theme.alphaBG)
-        border.width: 1
-        border.color: Theme.accentGray
+        color: Theme.bgPrimary
+        border.width: 2
+        border.color: Theme.accentBlue
 
         Column {
             anchors.fill: parent
@@ -89,16 +89,17 @@ PanelWindow {
                 id: searchBar
                 width: parent.width
                 height: 44
-                radius: height / 2
-                color: Theme.bgModule
-
+                radius: Theme.barRadius
+                color: Theme.bgSecondary
+                border.width: 2
+                border.color: Theme.highlightBlue
                 Text {
                     id: searchGlyph
                     anchors.left: parent.left
                     anchors.leftMargin: 16
                     anchors.verticalCenter: parent.verticalCenter
                     text: "\uf002"
-                    color: Theme.highlightGray
+                    color: Theme.textPrimary
                     font.family: Theme.fontFamily
                     font.pointSize: Theme.fontSizeLarge
                 }

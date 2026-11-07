@@ -37,6 +37,7 @@ Column {
     property bool scratchpadActive: false
     property bool scrollBusy: false
 
+    width: Theme.barButtonWidth
     spacing: Theme.barSpacing
 
     // Workspace dispatcher -----------------------------------------------
@@ -131,6 +132,7 @@ Column {
             font.family: Theme.fontFamily
             font.pointSize: Theme.fontSizePrimary
             horizontalAlignment: Text.AlignHCenter
+
 
             color: {
                 if (hovered) {

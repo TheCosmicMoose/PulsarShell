@@ -18,7 +18,7 @@ Rectangle {
     width: Theme.barButtonWidth
     height: Theme.barButtonWidth
     radius: Theme.barButtonRadius
-    color: Theme.bgModule
+    color: "transparent"
 
     Canvas {
         id: canvas
@@ -65,7 +65,6 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        horizontalAlignment: Text.AlignHCenter
         font.family: Theme.fontFamily
         font.pointSize: Theme.fontSizeSmall
         font.bold: root.showDetails

@@ -1,5 +1,14 @@
 {
-  "icon_theme": "Icons modern material (Dark)",
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Gruvbox Dark"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Icons modern material (Dark)",
+    "dark": "Colored Zed Icons Theme Dark"
+  },
   "markdown_preview": {
     "font_family": "JetBrainsMono Nerd Font"
   },
