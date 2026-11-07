@@ -142,7 +142,7 @@ hl.device({
 -- Enable Natural Scrolling --
 hl.config({
 	input = {
-		sensitivity = -0.9,
+		sensitivity = -0.25,
 		touchpad = {
 			natural_scroll = true,
 			scroll_factor = 0.2,
