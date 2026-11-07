@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import "../theme"
+import "../services"
 import "barTop"
 import "barCenter"
 import "barBottom"
@@ -30,7 +31,8 @@ PanelWindow {
 
     required property ShellScreen modelData
     screen: modelData
-    property bool barBg: false
+    // Fill the bar with the theme background (toggled in the theme flyout).
+    property bool barBg: ShellSettings.barBackground
 
     anchors {
         left: true
@@ -39,7 +41,8 @@ PanelWindow {
     }
 
     implicitWidth: Theme.barThickness
-    color: barBg ? Theme.bgPrimary : "transparent"
+    // Same translucency as the flyouts: the theme's alphaBarBg.
+    color: barBg ? Qt.alpha(Theme.bgPrimary, Theme.alphaBG) : "transparent"
 
     WlrLayershell.namespace: "pulsar-bar"
 
