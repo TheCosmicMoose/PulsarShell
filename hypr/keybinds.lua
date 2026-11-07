@@ -75,7 +75,7 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(textEditor))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprpicker -n --output-format=hex -a"))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd(shutDown))
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd(lockScreen))
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output -z"))
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -----------------------------------
