@@ -1,0 +1,103 @@
+{
+  "name": "Nord",
+  "colors": {
+    "bgPrimary": "#2e3440",
+    "bgSecondary": "#3b4252",
+    "bgModule": "#434c5e",
+
+    "textPrimary": "#eceff4",
+    "textSecondary": "#e5e9f0",
+    "textContrast": "#2e3440",
+    "textBg": "#a7aebd",
+
+    "accentRed": "#bf616a",
+    "highlightRed": "#cc8188",
+    "accentOrange": "#d08770",
+    "highlightOrange": "#d99f8d",
+    "accentYellow": "#ebcb8b",
+    "highlightYellow": "#efd5a2",
+    "accentGreen": "#a3be8c",
+    "highlightGreen": "#b5cba3",
+    "accentAqua": "#8fbcbb",
+    "highlightAqua": "#a5c9c9",
+    "accentBlue": "#5e81ac",
+    "highlightBlue": "#81a1c1",
+    "accentPurple": "#b48ead",
+    "highlightPurple": "#c3a5bd",
+    "accentGray": "#4c566a",
+    "highlightGray": "#616e88",
+
+    "windowBorderActiveStart": "#5e81ac",
+    "windowBorderActiveEnd": "#81a1c1",
+    "windowBorderInactiveStart": "#4c566a",
+    "windowBorderInactiveEnd": "#616e88",
+
+    "cursorBg": "#81a1c1",
+    "selectionBg": "#5e81ac",
+    "selectionFg": "#2e3440"
+  },
+  "transparency": {
+    "alphaBarBg": 0.85,
+    "alphaAccent": 0.95,
+    "alphaHighlight": 0.95,
+    "alphaActiveWindow": 1.0,
+    "alphaInactiveWindow": 0.85,
+    "alphaActiveWindowBorder": 1.0,
+    "alphaInactiveWindowBorder": 0.75,
+    "blurRadius": 6,
+    "blurPasses": 2,
+    "borderGradientAngle": 35,
+    "alphaTerminal": 0.85
+  },
+  "font": {
+    "fontFamily": "JetBrainsMono Nerd Font",
+    "fontFamilyAlt": "JetBrainsMono Nerd Font Propo",
+    "fontSizePrimary": 12,
+    "fontSizeLarge": 14,
+    "fontSizeSmall": 10,
+    "fontSizeHeader": 24
+  },
+  "quickshellMetrics": {
+    "barThickness": 48,
+    "barSpacing": 8,
+    "edgeMargin": 8,
+    "yPadding": 16,
+    "xPadding": 16,
+
+    "barButtonWidth": 40,
+    "barButtonHeight": 40,
+    "barButtonHalfHeight": 20,
+
+    "barRadius": 0,
+    "barButtonRadius": 0,
+
+    "animDuration": 100,
+    "animLong": 200,
+    "animShort": 50
+  },
+  "hyprlandMetrics": {
+    "windowBorderWidth": 2,
+    "windowCornerRadius": 0,
+    "gapsIn": 2,
+    "gapsOut": 2
+  },
+  "zenColors": {
+    "zenPrimaryColor": "#3b4252",
+    "zenBrandingBg": "#2e3440",
+    "zenBrandingBgReverse": "#e5e9f0",
+    "toolboxTextColor": "#e5e9f0",
+    "toolbarBgTransparent": "#2e3440",
+    "surfaceSecondary": "#3b4252",
+    "BorderColor": "#81a1c1",
+    "tabLabelColor": "#81a1c1",
+    "personalToolbarColor1": "#e5e9f0",
+    "personalToolbarColor2": "#2e3440",
+    "browserBg1": "#2e3440",
+    "browserBg2": "#3b4252",
+    "workspaceAccent1": "#bf616a",
+    "workspaceAccent2": "#a3be8c",
+    "workspaceAccent3": "#5e81ac",
+    "workspaceAccent4": "#b48ead",
+    "workspaceAccent5": "#8fbcbb"
+  }
+}

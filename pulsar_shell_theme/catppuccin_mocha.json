@@ -1,0 +1,103 @@
+{
+  "name": "Catppuccin Mocha",
+  "colors": {
+    "bgPrimary": "#1e1e2e",
+    "bgSecondary": "#313244",
+    "bgModule": "#45475a",
+
+    "textPrimary": "#cdd6f4",
+    "textSecondary": "#bac2de",
+    "textContrast": "#11111b",
+    "textBg": "#a6adc8",
+
+    "accentRed": "#f38ba8",
+    "highlightRed": "#eba0ac",
+    "accentOrange": "#fab387",
+    "highlightOrange": "#fbc29f",
+    "accentYellow": "#f9e2af",
+    "highlightYellow": "#fae8bf",
+    "accentGreen": "#a6e3a1",
+    "highlightGreen": "#b8e9b4",
+    "accentAqua": "#94e2d5",
+    "highlightAqua": "#89dceb",
+    "accentBlue": "#89b4fa",
+    "highlightBlue": "#b4befe",
+    "accentPurple": "#cba6f7",
+    "highlightPurple": "#f5c2e7",
+    "accentGray": "#6c7086",
+    "highlightGray": "#7f849c",
+
+    "windowBorderActiveStart": "#89b4fa",
+    "windowBorderActiveEnd": "#b4befe",
+    "windowBorderInactiveStart": "#6c7086",
+    "windowBorderInactiveEnd": "#7f849c",
+
+    "cursorBg": "#b4befe",
+    "selectionBg": "#89b4fa",
+    "selectionFg": "#1e1e2e"
+  },
+  "transparency": {
+    "alphaBarBg": 0.85,
+    "alphaAccent": 0.95,
+    "alphaHighlight": 0.95,
+    "alphaActiveWindow": 1.0,
+    "alphaInactiveWindow": 0.85,
+    "alphaActiveWindowBorder": 1.0,
+    "alphaInactiveWindowBorder": 0.75,
+    "blurRadius": 6,
+    "blurPasses": 2,
+    "borderGradientAngle": 35,
+    "alphaTerminal": 0.85
+  },
+  "font": {
+    "fontFamily": "JetBrainsMono Nerd Font",
+    "fontFamilyAlt": "JetBrainsMono Nerd Font Propo",
+    "fontSizePrimary": 12,
+    "fontSizeLarge": 14,
+    "fontSizeSmall": 10,
+    "fontSizeHeader": 24
+  },
+  "quickshellMetrics": {
+    "barThickness": 48,
+    "barSpacing": 8,
+    "edgeMargin": 8,
+    "yPadding": 16,
+    "xPadding": 16,
+
+    "barButtonWidth": 40,
+    "barButtonHeight": 40,
+    "barButtonHalfHeight": 20,
+
+    "barRadius": 0,
+    "barButtonRadius": 0,
+
+    "animDuration": 100,
+    "animLong": 200,
+    "animShort": 50
+  },
+  "hyprlandMetrics": {
+    "windowBorderWidth": 2,
+    "windowCornerRadius": 0,
+    "gapsIn": 2,
+    "gapsOut": 2
+  },
+  "zenColors": {
+    "zenPrimaryColor": "#313244",
+    "zenBrandingBg": "#1e1e2e",
+    "zenBrandingBgReverse": "#bac2de",
+    "toolboxTextColor": "#bac2de",
+    "toolbarBgTransparent": "#1e1e2e",
+    "surfaceSecondary": "#313244",
+    "BorderColor": "#b4befe",
+    "tabLabelColor": "#b4befe",
+    "personalToolbarColor1": "#bac2de",
+    "personalToolbarColor2": "#1e1e2e",
+    "browserBg1": "#1e1e2e",
+    "browserBg2": "#313244",
+    "workspaceAccent1": "#f38ba8",
+    "workspaceAccent2": "#a6e3a1",
+    "workspaceAccent3": "#89b4fa",
+    "workspaceAccent4": "#cba6f7",
+    "workspaceAccent5": "#94e2d5"
+  }
+}
