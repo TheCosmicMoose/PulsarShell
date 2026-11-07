@@ -1,6 +1,10 @@
 # Pulsar Shell 
 ### What is Pulsar Shell
 Pulsar is my personal work in progress Quickshell based shell for Hyprland. The style is heavily inspired by Omarchy's Quickshell config but with the implementation simplified a bit. I am using this as a project to learn more about coding so there may be bugs, and not everything is feature complete yet, but it should generally be fully functional.
+
+** AI Disclosure **
+I used Qwen 3.5 and Claude Opus 5.5 to assist with development, for both debugging, and helping me keep things rolling when I hit the limits of my knowledge and Quickshell's terrible documentation.
+
 ### Pulsar Shell Features
  - Menu Bar optimized for dual monitor setups with per monitor workspaces with their own indicators
  - Theming engine written in Go that uses simple json files for creating themes
