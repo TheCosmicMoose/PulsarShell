@@ -24,9 +24,8 @@ Column {
     width:          Theme.barThickness
     spacing:        Theme.barSpacing
     topPadding:     Theme.vertPadding
-    // Center barButtonWidth-wide items in the bar.
-    leftPadding:    (Theme.barThickness - Theme.barButtonWidth) / 2
+    // Every item is centered on the bar (see below), whatever its width.
 
-    LauncherButton {}
-    Workspaces { screen: root.screen }
+    LauncherButton { anchors.horizontalCenter: parent.horizontalCenter }
+    Workspaces { anchors.horizontalCenter: parent.horizontalCenter; screen: root.screen }
 }

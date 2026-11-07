@@ -14,7 +14,7 @@ Text {
         if (adapterOn) return Theme.textSecondary
         else return Theme.textBg
     }
-    font.family: Theme.fontFamily
+    font.family: Theme.fontFamilyAlt
     font.pointSize: Theme.fontSizePrimary
 
     //Icons

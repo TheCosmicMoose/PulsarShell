@@ -22,7 +22,7 @@ Text {
 
     width: Theme.barButtonWidth
     horizontalAlignment: Text.AlignHCenter
-    font.family: Theme.fontFamily
+    font.family: Theme.fontFamilyAlt
     font.pointSize: Theme.fontSizePrimary
     color: hovered ? Theme.highlightBlue
          : count > 0 ? Theme.textPrimary
@@ -45,7 +45,7 @@ Text {
             anchors.centerIn: parent
             text: root.count > 99 ? "99+" : root.count
             color: Theme.textPrimary
-            font.family: Theme.fontFamily
+            font.family: Theme.fontFamilyAlt
             font.pointSize: Math.max(6, Theme.fontSizeSmall - 3)
             font.bold: true
         }

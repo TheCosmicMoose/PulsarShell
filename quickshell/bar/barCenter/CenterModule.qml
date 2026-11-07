@@ -7,9 +7,8 @@ Column {
 
     width:          Theme.barThickness
     spacing:        Theme.barSpacing
-    // Center barButtonWidth-wide items in the bar.
-    leftPadding:    (Theme.barThickness - Theme.barButtonWidth) / 2
+    // Every item is centered on the bar (see below), whatever its width.
 
-    Clock {}
-    Weather {}
+    Clock { anchors.horizontalCenter: parent.horizontalCenter }
+    Weather { anchors.horizontalCenter: parent.horizontalCenter }
 }

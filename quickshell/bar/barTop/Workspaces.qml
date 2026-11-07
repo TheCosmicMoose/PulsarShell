@@ -129,7 +129,7 @@ Column {
             readonly property bool hovered: mouse.containsMouse
 
             width: Theme.barButtonWidth
-            font.family: Theme.fontFamily
+            font.family: Theme.fontFamilyAlt
             font.pointSize: Theme.fontSizePrimary
             horizontalAlignment: Text.AlignHCenter
 
@@ -168,7 +168,7 @@ Column {
         width: Theme.barButtonWidth
         horizontalAlignment: Text.AlignHCenter
 
-        font.family: Theme.fontFamily
+        font.family: Theme.fontFamilyAlt
         font.pointSize: Theme.fontSizePrimary
         color: Theme.accentAqua
         text: "󰬚"
