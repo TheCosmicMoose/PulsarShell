@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import "../theme"
+import "../services"
 import "common"
 
 // Theme flyout: every theme file in ~/.config/pulsar_shell_theme, each with
@@ -99,6 +100,33 @@ Column {
         width: root.panelWidth
         title: "Theme"
         showToggle: false
+    }
+
+    // Bar background on/off
+    Item {
+        width: root.panelWidth
+        height: Math.max(bgLabel.implicitHeight, bgToggle.implicitHeight)
+
+        Text {
+            id: bgLabel
+            anchors.left: parent.left
+            anchors.right: bgToggle.left
+            anchors.rightMargin: 12
+            anchors.verticalCenter: parent.verticalCenter
+            elide: Text.ElideRight
+            text: "Show bar background"
+            color: Theme.textSecondary
+            font.family: Theme.fontFamily
+            font.pointSize: Theme.fontSizePrimary
+        }
+
+        ToggleSwitch {
+            id: bgToggle
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            checked: ShellSettings.barBackground
+            onToggled: ShellSettings.barBackground = !ShellSettings.barBackground
+        }
     }
 
     Repeater {
