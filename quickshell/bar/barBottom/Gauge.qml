@@ -15,15 +15,16 @@ Rectangle {
     readonly property bool showDetails: mouse.containsMouse
     readonly property real fraction: Math.max(0, Math.min(1, value / 100))
 
-    width: Theme.barButtonWidth
-    height: Theme.barButtonWidth
+    width: Theme.barButtonWidth - Theme.barSpacing
+    height: Theme.barButtonWidth - Theme.barSpacing
     radius: Theme.barButtonRadius
     color: "transparent"
+
 
     Canvas {
         id: canvas
 
-        readonly property real lineWidth: 3
+        readonly property real lineWidth: 4
         readonly property real gapAngle: 45     // degrees left open at the bottom
 
         anchors.fill: parent
