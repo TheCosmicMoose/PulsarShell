@@ -113,7 +113,7 @@ WlSessionLockSurface {
 
             text: {
                 if (Lock.busy) return "Checking..."
-                if (Lock.buffer !== "") return "●".repeat(Math.min(Lock.buffer.length, 32))
+                if (Lock.buffer !== "") return "*".repeat(Math.min(Lock.buffer.length, 32))
                 if (Lock.error !== "") return Lock.error
                 return "Password"
             }
