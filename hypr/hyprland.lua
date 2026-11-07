@@ -85,6 +85,7 @@ hl.config({
         force_default_wallpaper = 0,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
         focus_on_activate       = true, -- Let apps take focus when asked, e.g. after clicking their notification
+        disable_splash_rendering = true
     },
 })
 
