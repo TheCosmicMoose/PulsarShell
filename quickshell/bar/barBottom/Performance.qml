@@ -7,6 +7,6 @@ Column {
 
     spacing: Theme.barSpacing
 
-    CpuMeter {}
-    MemMeter {}
+    CpuMeter { anchors.horizontalCenter: parent.horizontalCenter }
+    MemMeter { anchors.horizontalCenter: parent.horizontalCenter }
 }

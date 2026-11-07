@@ -29,7 +29,7 @@ Column {
 
     Text {
         anchors.horizontalCenter: parent.horizontalCenter
-        font.family:    Theme.fontFamily
+        font.family:    Theme.fontFamilyAlt   // glyph, like the bar icons
         font.pointSize: Theme.fontSizePrimary
         color:          Theme.textSecondary
         text:           ""

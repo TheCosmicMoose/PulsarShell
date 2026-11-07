@@ -11,7 +11,7 @@ Text {
     horizontalAlignment: Text.AlignHCenter
 
     color: Theme.textPrimary
-    font.family: Theme.fontFamily
+    font.family: Theme.fontFamilyAlt
     font.pointSize: Theme.fontSizePrimary
 
     PwObjectTracker {

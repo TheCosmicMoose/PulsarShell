@@ -66,7 +66,7 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        font.family: Theme.fontFamily
+        font.family: Theme.fontFamilyAlt
         font.pointSize: Theme.fontSizeSmall
         font.bold: root.showDetails
         color: Theme.textPrimary

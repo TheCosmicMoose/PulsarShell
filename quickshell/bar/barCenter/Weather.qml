@@ -14,7 +14,7 @@ Text {
     width: Theme.barButtonWidth
     horizontalAlignment: Text.AlignHCenter
 
-    font.family: Theme.fontFamily
+    font.family: Theme.fontFamilyAlt
     font.pointSize: Theme.fontSizePrimary
     color: Theme.textPrimary
 

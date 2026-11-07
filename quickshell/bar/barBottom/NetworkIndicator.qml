@@ -17,7 +17,7 @@ Text {
         if(!wired && !wifi) return Theme.highlightRed
         else return Theme.highlightOrange
     }
-    font.family: Theme.fontFamily
+    font.family: Theme.fontFamilyAlt
     font.pointSize: Theme.fontSizePrimary
 
     // Icons ------------------------------------------------------------
