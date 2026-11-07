@@ -97,8 +97,9 @@ Singleton {
         target: "wallpaper"
 
         function toggle(): void { root.toggle() }
-        function show(): void { root.show() }
-        function hide(): void { root.hide() }
+        // Not named show(): `qs ipc call <target> show` runs `qs ipc show` instead.
+        function open(): void { root.show() }
+        function close(): void { root.hide() }
     }
 
     LazyLoader {

@@ -13,7 +13,7 @@ local ide = "zeditor"
 local textEditor = "nvim"
 local lockScreen = "qs ipc call lock lock" --quickshell lockscreen--
 local shutDown = "qs ipc call power toggle" --quickshell power menu--
-local audioOSD = "qs ipc call audioosd show"
+local audioOSD = "qs ipc call audioosd open"
 
 local mainMod = "SUPER"
 

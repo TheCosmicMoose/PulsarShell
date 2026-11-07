@@ -44,7 +44,8 @@ Scope {
     IpcHandler {
         target: "audioosd"
 
-        function show(): void { root.show() }
+        // Not named show(): `qs ipc call <target> show` runs `qs ipc show` instead.
+        function open(): void { root.show() }
     }
 
     LazyLoader {

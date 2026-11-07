@@ -13,8 +13,8 @@ Column {
 
     Performance {}
     Audio {}
-    Bluetooth {}
-    Networking {}
+    BluetoothIndicator {}
+    NetworkIndicator {}
     ThemeButton {}
     NotificationButton {}
     Power {}                // always last
