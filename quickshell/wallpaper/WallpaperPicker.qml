@@ -63,7 +63,7 @@ Singleton {
         'img="$1"; conf="$2"; mkdir -p "$(dirname "$conf")" || exit 1; ' +
         'esc=$(printf "%s" "$img" | sed "s/#/##/g"); ' +
         '{ echo "# Written by the Pulsar Shell wallpaper picker."; ' +
-        '  echo "splash = false"; echo "ipc = 1"; echo; ' +
+        '  echo "splash = 0"; echo "ipc = 1"; echo; ' +
         '  echo "wallpaper {"; echo "    monitor = *"; ' +
         '  echo "    path = $esc"; echo "    fit_mode = cover"; echo "}"; ' +
         '} > "$conf.tmp" && mv "$conf.tmp" "$conf" || exit 1; ' +
