@@ -20,6 +20,12 @@ Column {
     readonly property int panelWidth: 460
     readonly property int bigSize: Theme.fontSizeHeader * 2
 
+    SystemClock {
+        id: clock
+        precision: SystemClock.Hours
+    }
+    readonly property int timeHours: clock.hours
+
     spacing: 14
 
     // No data yet ---------------------------------------------------------------
@@ -63,7 +69,15 @@ Column {
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 text: WeatherService.icon
-                color: Theme.textPrimary
+                color: {
+                    const h = root.timeHours
+                    if (h >= 22 || h <= 5) return Theme.highlightPurple
+                    if (h >= 20 || h <= 6) return Theme.highlightRed
+                    if (h >= 19 || h <= 7) return Theme.highlightOrange
+                    if (h >= 18 || h <= 8) return Theme.highlightYellow
+                    if (h >= 17 || h <= 9) return Theme.highlightAqua
+                    else return Theme.highlightBlue
+                }
                 font.family: Theme.fontFamilyAlt
                 font.pointSize: Math.round(root.bigSize * 0.8)
             }
@@ -75,7 +89,15 @@ Column {
                     Text {
                         id: bigTemp
                         text: Math.round(WeatherService.temperatureF)
-                        color: Theme.textPrimary
+                        color: {
+                            const h = root.timeHours
+                            if (h >= 22 || h <= 5) return Theme.highlightPurple
+                            if (h >= 20 || h <= 6) return Theme.highlightRed
+                            if (h >= 19 || h <= 7) return Theme.highlightOrange
+                            if (h >= 18 || h <= 8) return Theme.highlightYellow
+                            if (h >= 17 || h <= 9) return Theme.highlightAqua
+                            else return Theme.highlightBlue
+                        }
                         font.family: Theme.fontFamily
                         font.pointSize: root.bigSize
                         font.bold: true
@@ -87,7 +109,15 @@ Column {
                         anchors.topMargin: bigTemp.height * 0.12
                         leftPadding: 4
                         text: "°F"
-                        color: Theme.textSecondary
+                        color: {
+                            const h = root.timeHours
+                            if (h >= 22 || h <= 5) return Theme.highlightPurple
+                            if (h >= 20 || h <= 6) return Theme.highlightRed
+                            if (h >= 19 || h <= 7) return Theme.highlightOrange
+                            if (h >= 18 || h <= 8) return Theme.highlightYellow
+                            if (h >= 17 || h <= 9) return Theme.highlightAqua
+                            else return Theme.highlightBlue
+                        }
                         font.family: Theme.fontFamily
                         font.pointSize: Theme.fontSizeLarge
                     }
@@ -145,7 +175,15 @@ Column {
         width: root.panelWidth
         height: 1
         visible: WeatherService.hasData
-        color: Theme.accentGray
+        color: {
+            const h = root.timeHours
+            if (h >= 22 || h <= 5) return Theme.highlightPurple
+            if (h >= 20 || h <= 6) return Theme.highlightRed
+            if (h >= 19 || h <= 7) return Theme.highlightOrange
+            if (h >= 18 || h <= 8) return Theme.highlightYellow
+            if (h >= 17 || h <= 9) return Theme.highlightAqua
+            else return Theme.highlightBlue
+        }
         opacity: 0.5
     }
 

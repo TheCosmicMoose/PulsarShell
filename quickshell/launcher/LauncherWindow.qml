@@ -163,7 +163,7 @@ PanelWindow {
                         Rectangle {
                             anchors.bottom: parent.bottom
                             width: parent.width
-                            height: 2
+                            height: 4
                             visible: tabItem.active
                             color: Theme.highlightOrange
                         }

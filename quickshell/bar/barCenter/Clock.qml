@@ -46,7 +46,7 @@ Column {
             if (h >= 19 || h <= 7) return Theme.highlightOrange
             if (h >= 18 || h <= 8) return Theme.highlightYellow
             if (h >= 17 || h <= 9) return Theme.highlightAqua
-            return Theme.highlightBlue
+            else return Theme.highlightBlue
         }
         text: root.pad(root.timeMinutes)
     }
