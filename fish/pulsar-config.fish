@@ -49,3 +49,7 @@ alias hw='hwinfo --short'
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
 # Quick Ping test
 alias testping='ping -c 5 ping.archlinux.org'
+# Intall packages from pacman
+alias install="sudo pacman -S"
+# Enable services with systemd
+alias enable="sudo systemctl enable --now"
