@@ -61,11 +61,6 @@ Item {
         launched()
     }
 
-    function iconSource(icon) {
-        if (!icon) return Quickshell.iconPath("application-x-executable")
-        if (icon.startsWith("/")) return "file://" + icon      // some entries use a full path
-        return Quickshell.iconPath(icon, "application-x-executable")
-    }
 
     ListView {
         id: list
@@ -95,13 +90,14 @@ Item {
                 radius: Theme.barRadius
                 color: row.selected ? Theme.selectionBg : "transparent"
 
-                IconImage {
+                AppIcon {
                     id: icon
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
-                    implicitSize: 28
-                    source: root.iconSource(row.modelData.icon)
+                    size: 28
+                    icon: row.modelData.icon ?? ""
+                    name: row.modelData.name ?? ""
                 }
 
                 Text {
