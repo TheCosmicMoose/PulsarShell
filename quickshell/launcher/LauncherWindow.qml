@@ -15,10 +15,11 @@ PanelWindow {
     property int currentTab: 0
     readonly property var tabNames: [" Search", "󰀻 Apps", "󱓥 Clipboard", " System"]
 
-    // The tab that should receive Up/Down/Enter. Tabs not built yet give null.
+    // The tab that receives Up/Down/Enter.
     readonly property var activeTab: currentTab === 0 ? search
                                    : currentTab === 1 ? apps
-                                   : null
+                                   : currentTab === 2 ? clipboard
+                                   : system
 
     implicitWidth: 640
     implicitHeight: 460
@@ -43,9 +44,18 @@ PanelWindow {
 
     // All keys are handled here, while focus stays in the search box.
     function handleKey(event) {
+        // A System tab panel (e.g. the display picker) gets the keys first.
+        if (activeTab === system && system.inPanel && event.key !== Qt.Key_Escape
+                && event.key !== Qt.Key_Tab && event.key !== Qt.Key_Backtab
+                && system.handlePanelKey(event)) {
+            event.accepted = true
+            return
+        }
+
         switch (event.key) {
         case Qt.Key_Escape:
-            dismissed()
+            // Escape closes an open System panel first, then the launcher.
+            if (!(activeTab === system && system.back())) dismissed()
             event.accepted = true
             return
         case Qt.Key_Tab:
@@ -125,7 +135,7 @@ PanelWindow {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         visible: input.text === ""
-                        text: win.currentTab === 1 ? "Filter apps..." : "Search..."
+                        text: ["Search...", "Filter apps...", "Filter clipboard history...", "Filter settings..."][win.currentTab]
                         color: Theme.textBg
                         font: input.font
                     }
@@ -201,14 +211,20 @@ PanelWindow {
                     onLaunched: win.dismissed()
                 }
 
-                // Placeholder for the tabs that aren't built yet.
-                Text {
-                    anchors.centerIn: parent
-                    visible: win.currentTab >= 2
-                    text: win.tabNames[win.currentTab] + " tab: coming soon"
-                    color: Theme.textBg
-                    font.family: Theme.fontFamily
-                    font.pointSize: Theme.fontSizePrimary
+                ClipboardTab {
+                    id: clipboard
+                    anchors.fill: parent
+                    visible: win.currentTab === 2
+                    query: input.text
+                    onLaunched: win.dismissed()
+                }
+
+                SystemTab {
+                    id: system
+                    anchors.fill: parent
+                    visible: win.currentTab === 3
+                    query: input.text
+                    onLaunched: win.dismissed()
                 }
             }
         }

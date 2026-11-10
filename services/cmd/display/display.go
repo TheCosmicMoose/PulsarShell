@@ -6,6 +6,8 @@
 //
 //	display [-newMain display] [-newSec display]
 //
+// Pass -newSec "" when there is no secondary display.
+//
 // Example:
 //
 //	display -newMain eDP-1 -newSec HDMI-A-2

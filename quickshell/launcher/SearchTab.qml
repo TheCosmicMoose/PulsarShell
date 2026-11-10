@@ -175,11 +175,6 @@ Item {
         }
     }
 
-    function iconSource(icon) {
-        if (!icon) return Quickshell.iconPath("application-x-executable")
-        if (icon.startsWith("/")) return "file://" + icon
-        return Quickshell.iconPath(icon, "application-x-executable")
-    }
 
     // New results: select the first row.
     onResultsChanged: list.currentIndex = 0
@@ -307,14 +302,15 @@ Item {
                 color: row.selected && row.clickable ? Theme.selectionBg : "transparent"
 
                 // Apps get their real icon; everything else gets a glyph.
-                IconImage {
+                AppIcon {
                     id: appIcon
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.verticalCenter: parent.verticalCenter
-                    implicitSize: 28
+                    size: 28
                     visible: row.modelData.kind === "app"
-                    source: visible ? root.iconSource(row.modelData.icon) : ""
+                    icon: visible ? (row.modelData.icon ?? "") : ""
+                    name: row.modelData.title ?? ""
                 }
 
                 Text {

@@ -9,10 +9,11 @@ for i = 1, 10 do
     local ws = i
     hl.workspace_rule({ workspace = tostring(i), monitor = mainDisplay })
 end
--- Set worksapces 11-15 to bind to secondary display
-for i= 11, 20 do
-    local ws = i
-	hl.workspace_rule({ workspace = tostring(i), monitor = secondaryDisplay})
+-- Set workspaces 11-20 to bind to the secondary display (if there is one)
+if secondaryDisplay ~= "" then
+    for i = 11, 20 do
+        hl.workspace_rule({ workspace = tostring(i), monitor = secondaryDisplay })
+    end
 end
 
 --Window Rules
