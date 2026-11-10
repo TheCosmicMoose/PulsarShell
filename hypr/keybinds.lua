@@ -82,23 +82,22 @@ hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 ------- Multimedia Controls -------
 -----------------------------------
 
--- Laptop multimedia keys for volume and LCD brightness, calls the quickshell IPC for displaying the audio OSD popup
-hl.bind("XF86AudioRaiseVolume", function()
-    hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+")
-    hl.dsp.exec_cmd(audioOSD)
-    {locked = true, repeating = true}
-end)
-hl.bind("XF86AudioLowerVolume", function()
-    hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-")
-    hl.dsp.exec_cmd(audioOSD)
-    {locked = true, repeating = true}
-end)
-hl.bind("XF86AudioMute", function()
-    hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ toggle")
-    hl.dsp.exec_cmd(audioOSD)
-    {locked = true, repeating = true}
-end)
-hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+-- Laptop multimedia keys for volume and LCD brightness. The volume keys also
+-- show the Quickshell audio OSD: each runs a volume command, then the OSD. Inside a function, commands
+-- are run with hl.exec_cmd(); hl.dsp.exec_cmd() only builds a dispatcher
+-- object (for passing straight to hl.bind) and doesn't run anything itself.
+local function volumeKey(cmd)
+    return function()
+        hl.exec_cmd(cmd)
+        hl.exec_cmd(audioOSD)
+    end
+end
+
+hl.bind("XF86AudioRaiseVolume", volumeKey("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", volumeKey("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
+-- No repeating: holding the key shouldn't flip mute back and forth.
+hl.bind("XF86AudioMute",        volumeKey("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true })
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
